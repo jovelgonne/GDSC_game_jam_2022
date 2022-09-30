@@ -1,3 +1,4 @@
+from pickle import FALSE, TRUE
 import sys
 import pygame
 from pygame.locals import *
@@ -15,19 +16,31 @@ fpsClock = pygame.time.Clock()
 screen = pygame.display.set_mode((0, 0), pygame.FULLSCREEN)
 pygame.display.set_caption('Dialogue Boxes')
 
+# Main Menu
+game_started = 0
+
 # Text
 dialogue_font = pygame.font.Font('font/game_over.ttf', 64)
 line_number = -1
 space_pressed = 0
 frames_since_space = 0
 
+is_option = False
+option_selected = False         # False if option 1, true if option 2
+option_number = 0
+display_option_response = False
  
-# Color
+# Colors
 PINK = (255,182,193)
+WHITE = (255,255,255)
+BRONZE = (205,127,50)
+BLACK = (0,0,0)
+GREY = (47,79,79)
+
 
 # Game loop
 while True:
-    screen.fill((0, 0, 0))
+    screen.fill(BLACK)
   
     for event in pygame.event.get():
         # Allow Quit
@@ -36,45 +49,104 @@ while True:
             sys.exit()
 
         # Quit Condition
-        # if pygame.key.get_pressed()[pygame.K_ESCAPE] == True:
         if event.type == pygame.KEYDOWN:
             if event.key == pygame.K_ESCAPE:
                 pygame.quit()
 
         # Updates
             if event.key == pygame.K_SPACE:
+                # Start Game if haven't already
+                game_started = 1
                 space_pressed = 1
                 frames_since_space = 0
-                line_number += 1
-                print("space pressed")
+                if is_option == True:
+                    # ADD TO LOVE/HATE METER
+                    # is_option = False
+                    display_option_response = not display_option_response                     
+                    if display_option_response == True:
+                        is_option = False
+                        line_number += 1
+                else:
+                    # Update next line of text if all previous text already displayed 
+                    line_number += 1
+                
+        
+            if event.key == pygame.K_UP or event.key == pygame.K_DOWN:
+                option_selected = not option_selected
 
+    # Update frame count if adding text to screen
     if space_pressed == 1:
         frames_since_space+= 1
     
-
-    # Dialog box
-    dialog_box_padding = 40
-    text_padding = 60
-    text_offset = 20
-    row_offset = 40
-    width, height = screen.get_size()
-    pygame.draw.rect(screen, color=PINK, rect=pygame.Rect(dialog_box_padding, 0.75*height, width-2*dialog_box_padding, 0.25*height-dialog_box_padding))
-    
-    # Updating Text
-    text = give_text.current_text(line_number)
-    length_of_text = len(text)
-    if space_pressed == 1:
-        if length_of_text > (frames_since_space):      # Add text char-by-char
-            text = text[:(frames_since_space)]
-        else:
-            space_pressed == 0                         # Reset the space button
-        text = text.split("\n")
-        for row_number, row_content in enumerate(text):
-            text_render = dialogue_font.render(row_content, True, (0,0,0))
-            screen.blit(text_render, (text_padding,0.75*height+text_offset+row_number*row_offset))
-
-
     # Drawing Shit
+
+
+    if game_started == 1:
+
+        # Setup and Draw Dialog Box
+        dialog_box_padding = 40
+        text_padding = 60
+        text_offset = 20
+        row_offset = 40
+        width, height = screen.get_size()
+        pygame.draw.rect(screen, color=PINK, rect=pygame.Rect(dialog_box_padding, 0.75*height, width-2*dialog_box_padding, 0.25*height-dialog_box_padding))
+
+        # Retrieve Text
+        text = give_text.current_text(line_number)
+        length_of_text = len(text)
+
+        # Check if its a choice line
+        is_option = (">" in text)
+
+        # If it's not, proceed
+        if is_option == False:
+            # Add text char-by-char
+            if length_of_text > (frames_since_space):      
+                text = text[:(frames_since_space)]
+            else:
+                space_pressed = 0                         # Reset the space button after all text displayed
+            text = text.split("\n")
+            # Split text into different lines and display
+            for row_number, row_content in enumerate(text):
+                text_render = dialogue_font.render(row_content, True, BLACK)
+                screen.blit(text_render, (text_padding,0.75*height+text_offset+row_number*row_offset))
+
+        # If is a choice line, render with choice boxes
+        elif is_option == True:                        # CHANGE THIS LATER SO THAT IT CAN BE MORE THAN ONE LINE
+            text = text.split("\n")
+            if display_option_response == False:
+                # Display Question
+                option1 = text[1]              
+                option2 = text[2]
+                text_render = dialogue_font.render(text[0], True, BLACK)
+                screen.blit(text_render, (text_padding,0.75*height+text_offset+row_offset))
+
+                # Draw Option Boxes
+                option_box_padding = 400
+                selected_padding = 5
+
+                # Highlight Selected Box
+                if option_selected == False:
+                    pygame.draw.rect(screen, color=GREY, rect=pygame.Rect(option_box_padding-selected_padding, 0.55*height-selected_padding, width-2*(option_box_padding-selected_padding), 0.1*height+2*selected_padding-dialog_box_padding))
+                elif option_selected == True:
+                    pygame.draw.rect(screen, color=GREY, rect=pygame.Rect(option_box_padding-selected_padding, 0.65*height-selected_padding, width-2*(option_box_padding-selected_padding), 0.1*height+2*selected_padding-dialog_box_padding))
+
+                # Boxes
+                pygame.draw.rect(screen, color=PINK, rect=pygame.Rect(option_box_padding, 0.65*height, width-2*option_box_padding, 0.1*height-dialog_box_padding))
+                pygame.draw.rect(screen, color=PINK, rect=pygame.Rect(option_box_padding, 0.55*height, width-2*option_box_padding, 0.1*height-dialog_box_padding))
+
+                # Add options text
+                option_text_offset = 400
+                text_render = dialogue_font.render(option1, True, BLACK)
+                screen.blit(text_render, (option_text_offset,0.53*height+text_offset))
+                text_render = dialogue_font.render(option2, True, BLACK)
+                screen.blit(text_render, (option_text_offset,0.63*height+text_offset))
+        else:
+            print("Error in is_option variable")
+
+
+
+
     
     
 
