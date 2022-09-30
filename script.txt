@@ -7,10 +7,13 @@ Theres only 2 lines here.
 
 Third new line.
 Testing.
-123.
+Other line how creative.
 
 This is a question.
 > There is option 1.
 > And option 2.
-Response 1.
-Response 2.
+Response if you choose the first one.
+Response 2. It do be another choice.
+
+Something afterwards.
+It still works :D

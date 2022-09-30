@@ -5,9 +5,12 @@ from pygame.locals import *
 import math
 
 import give_text
+import utility_functions
  
 pygame.init()
 
+# Important Variables
+# ----------------------------------------------------
 # Timing
 fps = 60
 fpsClock = pygame.time.Clock()
@@ -27,7 +30,6 @@ frames_since_space = 0
 
 is_option = False
 option_selected = False         # False if option 1, true if option 2
-option_number = 0
 display_option_response = False
  
 # Colors
@@ -37,8 +39,8 @@ BRONZE = (205,127,50)
 BLACK = (0,0,0)
 GREY = (47,79,79)
 
-
-# Game loop
+# Main Game loop
+# ---------------------------------------------------------
 while True:
     screen.fill(BLACK)
   
@@ -60,12 +62,12 @@ while True:
                 space_pressed = 1
                 frames_since_space = 0
                 if is_option == True:
-                    # ADD TO LOVE/HATE METER
-                    # is_option = False
-                    display_option_response = not display_option_response                     
+                    # ADD TO LOVE/HATE METER                     
                     if display_option_response == True:
                         is_option = False
                         line_number += 1
+                    
+                    display_option_response = not display_option_response
                 else:
                     # Update next line of text if all previous text already displayed 
                     line_number += 1
@@ -93,20 +95,17 @@ while True:
 
         # Retrieve Text
         text = give_text.current_text(line_number)
-        length_of_text = len(text)
 
         # Check if its a choice line
         is_option = (">" in text)
 
         # If it's not, proceed
         if is_option == False:
-            # Add text char-by-char
-            if length_of_text > (frames_since_space):      
-                text = text[:(frames_since_space)]
-            else:
-                space_pressed = 0                         # Reset the space button after all text displayed
-            text = text.split("\n")
+            # Text Scrolling In
+            [text, space_pressed] = utility_functions.shorten_string(text, frames_since_space)
+
             # Split text into different lines and display
+            text = text.split("\n")
             for row_number, row_content in enumerate(text):
                 text_render = dialogue_font.render(row_content, True, BLACK)
                 screen.blit(text_render, (text_padding,0.75*height+text_offset+row_number*row_offset))
@@ -114,10 +113,10 @@ while True:
         # If is a choice line, render with choice boxes
         elif is_option == True:                        # CHANGE THIS LATER SO THAT IT CAN BE MORE THAN ONE LINE
             text = text.split("\n")
-            if display_option_response == False:
-                # Display Question
-                option1 = text[1]              
-                option2 = text[2]
+            if display_option_response == False:    
+                # Text Scrolling In
+                [text[0], space_pressed] = utility_functions.shorten_string(text[0], frames_since_space)
+
                 text_render = dialogue_font.render(text[0], True, BLACK)
                 screen.blit(text_render, (text_padding,0.75*height+text_offset+row_offset))
 
@@ -136,11 +135,24 @@ while True:
                 pygame.draw.rect(screen, color=PINK, rect=pygame.Rect(option_box_padding, 0.55*height, width-2*option_box_padding, 0.1*height-dialog_box_padding))
 
                 # Add options text
+                option1 = text[1]              
+                option2 = text[2]
                 option_text_offset = 400
+
                 text_render = dialogue_font.render(option1, True, BLACK)
                 screen.blit(text_render, (option_text_offset,0.53*height+text_offset))
                 text_render = dialogue_font.render(option2, True, BLACK)
                 screen.blit(text_render, (option_text_offset,0.63*height+text_offset))
+
+            # Showing response to option chosen    
+            if display_option_response == True:
+                if option_selected == False:
+                    response = text[3]
+                else:
+                    response = text[4]
+                [response, space_pressed] = utility_functions.shorten_string(response, frames_since_space)
+                text_render = dialogue_font.render(response, True, BLACK)                # Make text scroll in
+                screen.blit(text_render, (text_padding,0.75*height+text_offset+row_offset))
         else:
             print("Error in is_option variable")
 
