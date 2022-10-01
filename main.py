@@ -160,14 +160,9 @@ while True:
                             # Counter
                             option_number += 1 
 
-                            # ADD CHOICE STUFF HERE (will move to separate function later)
-                            if line_number == 10:
-                                if option_selected == False:
-                                    current_character = tony_happy
-                                if option_selected == True:
-                                    current_character = tony_neutral
-                            elif line_number == (CAFETERIA+3):
-                                current_character = sonia_smirk
+                            # ADD CHOICE STUFF HERE
+                            current_character = pandoras_box.options(line_number, characters, current_character, option_selected)
+
                         
                         display_option_response = not display_option_response
 
