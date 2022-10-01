@@ -68,19 +68,26 @@ mixer.music.set_volume(0.1)
 
 # Graphics
 # ---------------------------------------------------------
-current_character = 0
-current_background = 0
 
 # Title card
 title = pygame.image.load("images/title.png").convert_alpha()
 title = pygame.transform.rotozoom(title,0,1)
 
 # Characters
+player = pygame.image.load("images/Player.png").convert_alpha()
+player = pygame.transform.rotozoom(player,0,0.4)
+tony_happy = pygame.image.load("images/happy.png").convert_alpha()
+tony_happy = pygame.transform.rotozoom(tony_happy,0,0.4)
+tony_neutral = pygame.image.load("images/neutral.png").convert_alpha()
+tony_neutral = pygame.transform.rotozoom(tony_neutral,0,0.4)
+tony_angry = pygame.image.load("images/angry.png").convert_alpha()
+tony_angry = pygame.transform.rotozoom(tony_angry,0,0.4)
+tony_blush = pygame.image.load("images/blush.png").convert_alpha()
+tony_blush = pygame.transform.rotozoom(tony_blush,0,0.4)
 tony_jojo = pygame.image.load("images/Opening pose.png").convert_alpha()
-tony_jojo = pygame.transform.rotozoom(tony_jojo,0,0.48)
+tony_jojo = pygame.transform.rotozoom(tony_jojo,0,0.55)
 tony_cafe = pygame.image.load("images/cafe.png").convert_alpha()
 tony_cafe = pygame.transform.rotozoom(tony_cafe,0,0.48)
-characters = [tony_jojo,tony_cafe]
 
 # Backgrounds
 office = pygame.image.load("images/backgrounds/office.png").convert()
@@ -96,6 +103,11 @@ cliff = pygame.transform.scale(cliff, (width, height))
 cliff_bad = pygame.image.load("images/backgrounds/cliff_bad.png").convert()
 cliff_bad = pygame.transform.scale(cliff_bad, (width, height))
 backgrounds = [office, cafeteria, cafe, rain, cliff, cliff_bad]
+
+current_character = tony_jojo
+current_background = 0
+
+[character_width, character_height] = current_character.get_size()
 
 # Main Game loop
 # ---------------------------------------------------------
@@ -131,6 +143,13 @@ while True:
                             love_hate_meter = love_hate.update_bar(love_hate_meter, option_number, option_selected)  
                             # Counter
                             option_number += 1 
+
+                            # Add Choice Stuff here (will move to separate function later)
+                            if line_number == 9:
+                                if option_selected == False:
+                                    current_character = tony_happy
+                                if option_selected == True:
+                                    current_character = tony_neutral
                         
                         display_option_response = not display_option_response
 
@@ -139,15 +158,23 @@ while True:
                         # Update next line of text if all previous text already displayed 
                         line_number += 1
 
-                            # CHANGING MUSIC
+                        # CHANGE ANY IMAGES/AUDIO HERE
+
                             # INSERT MUSIC HERE MIGGY (Just copy below 4 lines of code, change line_number and audio loaded in)
-                        if line_number == 11:
                             # mixer.music.stop()
                             # mixer.music.load('audio/Astral_Wind.mp3')
                             # mixer.Channel(0).play(pygame.mixer.Sound('audio/Astral_Wind.mp3'), loops=-1)
-
+                            #    
+                        if line_number == 1:
+                            current_character = tony_happy
+                        if line_number == 2:
+                            current_character = tony_neutral
+                        if line_number == 5:
+                            current_character = player
+                        if line_number == 6:
+                            current_character = tony_happy
+                        if line_number == 11:
                             current_background += 1
-                            current_character = 1
         
             if event.key == pygame.K_UP or event.key == pygame.K_DOWN:
                 option_selected = not option_selected
@@ -166,7 +193,7 @@ while True:
         #     text_render = dialogue_font.render(row_content, True, BLACK)
         #     screen.blit(text_render, (text_padding,0.75*height+text_offset+row_number*row_offset))
     else:
-        screen.blit(characters[current_character], (320, -140))
+        screen.blit(current_character, (0.5*(width-character_width), 0))
 
     # Might work on this later
     # # Pause/Unpause Button 
