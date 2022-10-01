@@ -1,8 +1,8 @@
 from pickle import FALSE, TRUE
 import sys
 import pygame
+from pygame import mixer
 from pygame.locals import *
-import math
 
 import give_text
 import utility_functions
@@ -17,7 +17,7 @@ fpsClock = pygame.time.Clock()
  
 # Screen
 screen = pygame.display.set_mode((0, 0), pygame.FULLSCREEN)
-pygame.display.set_caption('Dialogue Boxes')
+pygame.display.set_caption('Tony')
 
 # Main Menu
 game_started = 0
@@ -39,6 +39,32 @@ BRONZE = (205,127,50)
 BLACK = (0,0,0)
 GREY = (47,79,79)
 
+# Music and Audio
+# ---------------------------------------------------------
+#Instantiate mixer
+mixer.init()
+
+#Load audio file
+mixer.music.load('audio/Oh_Tony.mp3')
+
+#Set preferred volume
+mixer.music.set_volume(0.1)
+
+#Play the music
+mixer.music.play(loops=-1)
+
+
+# Graphics
+# ---------------------------------------------------------
+# Characters
+tony_jojo = pygame.image.load("images/Opening pose.png").convert_alpha()
+tony_jojo = pygame.transform.rotozoom(tony_jojo,0,0.48)
+
+# Backgrounds
+office = pygame.image.load("images/backgrounds/office.png").convert()
+office = pygame.transform.rotozoom(office,0,0.7)
+
+
 # Main Game loop
 # ---------------------------------------------------------
 while True:
@@ -59,18 +85,22 @@ while True:
             if event.key == pygame.K_SPACE:
                 # Start Game if haven't already
                 game_started = 1
-                space_pressed = 1
-                frames_since_space = 0
-                if is_option == True:
-                    # ADD TO LOVE/HATE METER                     
-                    if display_option_response == True:
-                        is_option = False
-                        line_number += 1
-                    
-                    display_option_response = not display_option_response
+
+                if space_pressed == 1:
+                    frames_since_space = 500
                 else:
-                    # Update next line of text if all previous text already displayed 
-                    line_number += 1
+                    space_pressed = 1
+                    frames_since_space = 0
+                    if is_option == True:
+                        # ADD TO LOVE/HATE METER                     
+                        if display_option_response == True:
+                            is_option = False
+                            line_number += 1
+                        
+                        display_option_response = not display_option_response
+                    else:
+                        # Update next line of text if all previous text already displayed 
+                        line_number += 1
                 
         
             if event.key == pygame.K_UP or event.key == pygame.K_DOWN:
@@ -81,6 +111,17 @@ while True:
         frames_since_space+= 1
     
     # Drawing Shit
+
+    # Background
+    screen.blit(office, (0, 0))
+
+    # Character
+    screen.blit(tony_jojo, (320, -140))
+
+    # Pause/Unpause Button
+    button_padding = 50
+    button_width = 50
+    pygame.draw.rect(screen, PINK, pygame.Rect(screen.get_width()-button_padding-button_width, button_padding, button_width, button_width),5,5,5,5)
 
 
     if game_started == 1:

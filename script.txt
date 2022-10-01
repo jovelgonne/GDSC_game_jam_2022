@@ -1,19 +1,20 @@
-Hello now this is a long chain of words to make sure that this is working.
-Testing this feature.
-Ngl pretty pog that this actually works first try.
+The world is full of job instability and financial insecurities. 
+The distribution of wealth and power continues to skew. 
+Governments worry more about the welfare of their businesses rather than that of their people...
 
-This should be a new paragraph hopefully this works.
-Theres only 2 lines here.
+I hope you all do your part as a member of The Universal Society of Youth Discipline, or USYD for short. 
+Together we will work to enforce my grand plan to stop the crisis of international unemployment:
 
-Third new line.
-Testing.
-Other line how creative.
+The PEP Social Score! 
+Enforcing people around the world, especially our Youths, to serve a minimum of a thousand PEP hours a year! 
 
-This is a question.
-> There is option 1.
-> And option 2.
-Response if you choose the first one.
-Response 2. It do be another choice.
+This will revolutionise society!
 
-Something afterwards.
-It still works :D
+Ah, you there! What is your name? 
+I believe I remember you having skills related to data collection, I need to speak to you about something.
+
+What is your name?
+> Anton
+> Nee
+
+I can tell there is something special about you.
