@@ -1,16 +1,22 @@
+I'd like to thank you all for agreeing to join this project.
+For the next few weeks we'll finally be executing our initiative.
+With the power of business and government connections.
+
 The world is full of job instability and financial insecurities. 
 The distribution of wealth and power continues to skew. 
-Governments worry more about the welfare of their businesses rather than that of their people...
+Governments worry more about the welfare of their businesses rather than that of their people..
 
-I hope you all do your part as a member of The Universal Society of Youth Discipline, or USYD for short. 
-Together we will work to enforce my grand plan to stop the crisis of international unemployment:
-
-The PEP Social Score! 
-Enforcing people around the world, especially our Youths, to serve a minimum of a thousand PEP hours a year! 
+And as such, I believe we have the solution.
+The PEP Social Score System!
+Enforcing youths around the world, to serve a minimum of a thousand PEP hours yearly!
 
 This will revolutionise society!
+Together we will work to enforce my grand plan to stop the crisis of international unemployment.
+I hope you all do your part as a member of The Universal Society of Youth Discipline, or USYD for short.
 
-Ah, you there! What is your name? 
+It seems Tony notices me amongst the crowd.
+
+Ah, you there! 
 I believe I remember you having skills related to data collection, I need to speak to you about something.
 
 What is your name?
@@ -20,3 +26,13 @@ Wow how exotic!
 Wow what a unique name!
 
 I can tell there is something special about you.
+And I think I remember something along the lines of you being a talented surveyor?
+As such, I was wondering if you could accompany me tomorrow?
+
+Will you accompany me?
+> Sure! You can count on me like one two three!
+> I'm only going with you because it's my job. 
+Tony: Thanks! I really appreciate it. I'll contact you later to talk to you more about it.
+Tony: Ah… okay. That's fine with me I guess.
+
+Looks like it's time for lunch break. I'll catch you later I suppose!

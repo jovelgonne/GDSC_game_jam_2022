@@ -18,6 +18,7 @@ fpsClock = pygame.time.Clock()
 # Screen
 screen = pygame.display.set_mode((0, 0), pygame.FULLSCREEN)
 pygame.display.set_caption('Tony')
+width, height = screen.get_size()
 
 # Main Menu
 game_started = 0
@@ -59,6 +60,10 @@ mixer.Channel(0).play(pygame.mixer.Sound('audio/Oh_Tony.mp3'), loops=-1)
 current_character = 0
 current_background = 0
 
+# Title card
+title_card = pygame.image.load("images/title_card.png").convert_alpha()
+title_card = pygame.transform.rotozoom(title_card,0,0.48)
+
 # Characters
 tony_jojo = pygame.image.load("images/Opening pose.png").convert_alpha()
 tony_jojo = pygame.transform.rotozoom(tony_jojo,0,0.48)
@@ -68,15 +73,15 @@ characters = [tony_jojo,tony_cafe]
 
 # Backgrounds
 office = pygame.image.load("images/backgrounds/office.png").convert()
-office = pygame.transform.rotozoom(office,0,0.8)
+office = pygame.transform.scale(office, (width, height))
 cafeteria = pygame.image.load("images/backgrounds/cafeteria.png").convert()
-cafeteria = pygame.transform.rotozoom(cafeteria,0,0.8)
+cafeteria = pygame.transform.scale(cafeteria, (width, height))
 cafe = pygame.image.load("images/backgrounds/cafe.png").convert()
-cafe = pygame.transform.rotozoom(cafe,0,0.8)
+cafe = pygame.transform.scale(cafe, (width, height))
 rain = pygame.image.load("images/backgrounds/rain.png").convert()
-rain = pygame.transform.rotozoom(rain,0,0.8)
+rain = pygame.transform.scale(rain, (width, height))
 cliff = pygame.image.load("images/backgrounds/cliff.png").convert()
-cliff = pygame.transform.rotozoom(cliff,0,0.8)
+cliff = pygame.transform.scale(cliff, (width, height))
 backgrounds = [office, cafeteria, cafe, rain, cliff]
 
 # Main Game loop
@@ -136,6 +141,8 @@ while True:
     if space_pressed == 1:
         frames_since_space+= 1
     
+    if game_started == 0:
+        screen.blit(title_card, (0, 0))
 
     # Background
     screen.blit(backgrounds[current_background], (0, 0))
@@ -156,7 +163,6 @@ while True:
         text_padding = 60
         text_offset = 20
         row_offset = 40
-        width, height = screen.get_size()
         pygame.draw.rect(screen, color=PINK, rect=pygame.Rect(dialog_box_padding, 0.75*height, width-2*dialog_box_padding, 0.25*height-dialog_box_padding))
 
         # Retrieve Text
