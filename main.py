@@ -30,6 +30,7 @@ meter_max = 10
 
 # Text
 dialogue_font = pygame.font.Font('font/game_over.ttf', 64)
+instructions_font = pygame.font.Font('font/Cookiemonster.ttf', 32)
 line_number = -1
 space_pressed = 0
 frames_since_space = 0
@@ -38,8 +39,9 @@ is_option = False
 option_selected = False             # False if option 1, true if option 2
 display_option_response = False 
 option_number = 0                  # Keeps track of which option we're on
- 
+
 # Colors
+# ----------------------------------------------------------
 PINK = (255,182,193)
 WHITE = (255,255,255)
 BRONZE = (205,127,50)
@@ -61,7 +63,7 @@ mixer.music.load('audio/Oh_Tony.mp3')
 mixer.music.set_volume(0.1)
 
 #Play the music
-mixer.Channel(0).play(pygame.mixer.Sound('audio/Oh_Tony.mp3'), loops=-1)
+# mixer.Channel(0).play(pygame.mixer.Sound('audio/Oh_Tony.mp3'), loops=-1)
 
 
 # Graphics
@@ -91,7 +93,9 @@ rain = pygame.image.load("images/backgrounds/rain.png").convert()
 rain = pygame.transform.scale(rain, (width, height))
 cliff = pygame.image.load("images/backgrounds/cliff.png").convert()
 cliff = pygame.transform.scale(cliff, (width, height))
-backgrounds = [office, cafeteria, cafe, rain, cliff]
+cliff_bad = pygame.image.load("images/backgrounds/cliff_bad.png").convert()
+cliff_bad = pygame.transform.scale(cliff_bad, (width, height))
+backgrounds = [office, cafeteria, cafe, rain, cliff, cliff_bad]
 
 # Main Game loop
 # ---------------------------------------------------------
@@ -137,7 +141,7 @@ while True:
 
                             # CHANGING MUSIC
                             # INSERT MUSIC HERE MIGGY (Just copy below 4 lines of code, change line_number and audio loaded in)
-                        if line_number == 8:
+                        if line_number == 11:
                             # mixer.music.stop()
                             # mixer.music.load('audio/Astral_Wind.mp3')
                             # mixer.Channel(0).play(pygame.mixer.Sound('audio/Astral_Wind.mp3'), loops=-1)
@@ -158,6 +162,9 @@ while True:
     # Draw Title/Character
     if game_started == 0:
         screen.blit(title, (600, 0))
+        # for row_number, row_content in (text):
+        #     text_render = dialogue_font.render(row_content, True, BLACK)
+        #     screen.blit(text_render, (text_padding,0.75*height+text_offset+row_number*row_offset))
     else:
         screen.blit(characters[current_character], (320, -140))
 
