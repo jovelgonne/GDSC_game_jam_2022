@@ -69,8 +69,7 @@ def options(line_number, characters, old_character, option_selected):
             current_character = tony_happy
         if option_selected == True:
             current_character = tony_neutral
-    elif line_number == (CAFETERIA+3):
-        current_character = sonia_smirk
+
     
     if current_character == -1:
         return old_character

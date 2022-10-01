@@ -31,7 +31,7 @@ meter_max = 10
 
 # Text
 dialogue_font = pygame.font.Font('font/game_over.ttf', 64)
-instructions_font = pygame.font.Font('font/Cookiemonster.ttf', 32)
+instructions_font = pygame.font.Font('font/comicsans.ttf', 48)
 line_number = -1
 space_pressed = 0
 frames_since_space = 0
@@ -80,7 +80,7 @@ mixer.music.set_volume(0.1)
 
 # Title card
 title = pygame.image.load("images/title.png").convert_alpha()
-title = pygame.transform.rotozoom(title,0,1)
+title = pygame.transform.rotozoom(title,0,2)
 
 # Characters
 player = pygame.image.load("images/Player.png").convert_alpha()
@@ -192,10 +192,17 @@ while True:
 
     # Draw Title/Character
     if game_started == 0:
-        screen.blit(title, (600, 0))
-        # for row_number, row_content in (text):
-        #     text_render = dialogue_font.render(row_content, True, BLACK)
-        #     screen.blit(text_render, (text_padding,0.75*height+text_offset+row_number*row_offset))
+        # Setup and Draw Dialog Box
+        text_padding = 60
+        instructions_width_pad = 300
+        instructions_height_pad = 500
+        row_offset = 40
+
+        screen.blit(title, (0, -450))
+        instructions_text = ["Instructions:","","* Press Space to Progress","* Up and Down keys to scroll dialogue options","* Your decisions influence the final events!"]
+        for row_number, row_content in enumerate(instructions_text):
+            text_render = instructions_font.render(row_content, True, BLACK)
+            screen.blit(text_render, (instructions_width_pad,instructions_height_pad+row_number*row_offset))
     else:
         screen.blit(current_character, (0.5*(width-character_width), 0))
 
