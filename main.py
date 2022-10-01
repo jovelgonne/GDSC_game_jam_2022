@@ -101,10 +101,18 @@ while True:
                             line_number += 1
                         
                         display_option_response = not display_option_response
+
+                    # CHANGING MUSIC
+                    if line_number == 4:
+                        mixer.music.stop()
+                        mixer.music.load('audio/Astral_Wind.mp3')
+                        mixer.music.play(loops=-1)
+
+
+
                     else:
                         # Update next line of text if all previous text already displayed 
                         line_number += 1
-                
         
             if event.key == pygame.K_UP or event.key == pygame.K_DOWN:
                 option_selected = not option_selected
@@ -113,6 +121,7 @@ while True:
     if space_pressed == 1:
         frames_since_space+= 1
     
+
     # Drawing Shit
 
     # Background
