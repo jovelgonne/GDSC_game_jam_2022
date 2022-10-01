@@ -6,7 +6,7 @@ from pygame.locals import *
 
 import give_text
 import utility_functions
- 
+
 pygame.init()
 
 # Important Variables
@@ -59,6 +59,9 @@ mixer.music.play(loops=-1)
 # Characters
 tony_jojo = pygame.image.load("images/Opening pose.png").convert_alpha()
 tony_jojo = pygame.transform.rotozoom(tony_jojo,0,0.48)
+
+tony_cafe = pygame.image.load("images/cafe.png").convert_alpha()
+tony_cafe = pygame.transform.rotozoom(tony_cafe,0,0.48)
 
 # Backgrounds
 office = pygame.image.load("images/backgrounds/office.png").convert()
