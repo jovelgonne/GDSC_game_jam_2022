@@ -43,10 +43,10 @@ option_number = 0                  # Keeps track of which option we're on
 
 # Constants
 # ----------------------------------------------------------
-CAFETERIA = 11
-CAFE = CAFETERIA + 19
-RAIN = CAFE + 35
-CLIFF = RAIN + 16
+CAFETERIA = 12
+CAFE = CAFETERIA + 20
+RAIN = CAFE + 36
+CLIFF = RAIN + 17
 
 
 # Colors
@@ -103,6 +103,7 @@ sonia_smirk = pygame.image.load("images/sonia smirk.png").convert_alpha()
 sonia_smirk = pygame.transform.rotozoom(sonia_smirk,0,0.55)
 sonia_weak = pygame.image.load("images/sonia weak.png").convert_alpha()
 sonia_weak = pygame.transform.rotozoom(sonia_weak,0,0.5)
+characters = [tony_happy,tony_neutral,tony_angry,tony_blush,tony_jojo,tony_cafe,sonia_smirk,sonia_neutral,player]
 
 # Backgrounds
 office = pygame.image.load("images/backgrounds/office.png").convert()
@@ -150,7 +151,7 @@ while True:
                 else:
                     space_pressed = 1
                     frames_since_space = 0
-                    if is_option == True:                  
+                    if is_option == True:              
                         if display_option_response == True:
                             is_option = False
                             line_number += 1
@@ -160,7 +161,7 @@ while True:
                             option_number += 1 
 
                             # ADD CHOICE STUFF HERE (will move to separate function later)
-                            if line_number == 9:
+                            if line_number == 10:
                                 if option_selected == False:
                                     current_character = tony_happy
                                 if option_selected == True:
@@ -170,48 +171,20 @@ while True:
                         
                         display_option_response = not display_option_response
 
-
                     else:
                         # Update next line of text if all previous text already displayed 
                         line_number += 1
 
-                    # CHANGE ANY IMAGES/AUDIO HERE
-
+                    
+                    # CHANGE MUSIC HERE
                         # INSERT MUSIC HERE MIGGY (Just copy below 4 lines of code, change line_number and audio loaded in)
                         # mixer.music.stop()
                         # mixer.music.load('audio/Astral_Wind.mp3')
                         # mixer.Channel(0).play(pygame.mixer.Sound('audio/Astral_Wind.mp3'), loops=-1)
 
-                    # pandoras_box.open()    
-                    if line_number == 1:
-                        current_character = tony_happy
-                    if line_number == 2:
-                        current_character = tony_neutral
-                    if line_number == 5:
-                        current_character = player
-                    if line_number == 6:
-                        current_character = tony_happy
-                    if line_number == CAFETERIA:
-                        current_character = player
-                        current_background += 1
-                    if line_number == (CAFETERIA+1):
-                        current_character = sonia_smirk
-                    if line_number == (CAFETERIA+2):
-                        current_character = player
-                    if line_number == (CAFETERIA+3):
-                        current_character = sonia_neutral
+                    # CHANGE ANY IMAGES HERE
+                    [current_character,current_background] = pandoras_box.open(line_number, current_background, characters, current_character)  
 
-                    if line_number == CAFE:
-                        current_background += 1
-
-                    if line_number == RAIN:
-                        current_background += 1
-
-                    if line_number == CLIFF:
-                        current_background += 1
-
-
-                    print(line_number)
             if event.key == pygame.K_UP or event.key == pygame.K_DOWN:
                 option_selected = not option_selected
 

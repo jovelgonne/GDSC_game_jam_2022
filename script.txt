@@ -2,7 +2,7 @@ On a normal Monday morning, I somehow manage to make it to work just in time.
 I work as a Data Analyst for a big company. 
 We've been hearing about a new project unveiling sometime soon though.
 
-I enter the workplace to find my boss, Tony Cadi, speaking to the entire room.
+* I enter the workplace to find my boss, Tony Cadi, speaking to the entire room.
 It seems the grand project he's been so excited about is finally getting revealed.
 I sure hope it's a beneficial program to society with no ridiculous caveats.
 
@@ -40,8 +40,8 @@ As such, I was wondering if you could accompany me tomorrow?
 Will you accompany me?
 > Sure! You can count on me like one two three!
 > I'm only going with you because it's my job. 
-Happy Tony: Thanks! I really appreciate it. I'll talk to you later to talk to you more about it.
-Neutral Tony: Ah.. okay. That's fine with me I guess.
+Thanks! I really appreciate it. I'll talk to you later to talk to you more about it.
+Ah.. okay. That's fine with me I guess.
 
 Looks like it's time for lunch break. I'll catch you later I suppose!
 
@@ -52,11 +52,12 @@ Heyo, what's hip and happening broski?
 That speech Tony made back there was pretty weird huh?
 I'm not sure I'm a fan of this PEP system idea..
 
+I'm not sure I'm a fan of this PEP system idea..
 > It's pretty insane..
 > I guess it's kinda reasonable.
 I know right! Surely there won't be enough people to support such an idea.
 Ahaha, funny joke! Anyways, I'm sure he won't be able to find enough people to agree anyway.
- 
+
 Speaking of which..
 Say.. what do you think of that sight over there?
 
@@ -69,7 +70,7 @@ What do you think of the sight of Tony?
 True. Some oddballs just look oddly good I guess.
 Ahahaha, I'm sure there's some out there who'd want him to sit on them instead. Weirdos.
 
-Wait… no way! It seems he's coming this way.
+Wait.. no way! It seems he's coming this way.
 
 Hello! I wanted to talk to you about the details of the meetup tomorrow! 
 We're meeting with a very important business associate.
@@ -84,7 +85,7 @@ I swear I'm a completely normal guy!
 Your friend's one of our core data analysts for our system!
 I also need them to meet my associate so they can discuss more things.
 
-Hmm… seems reasonable enough I suppose.
+Hmm.. seems reasonable enough I suppose.
 
 I do wish people were a bit more trusting of my plan. 
 I know you may not agree with it, but I truly do believe it's the best course of action.
