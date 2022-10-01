@@ -155,11 +155,6 @@ while True:
             if event.key == pygame.K_ESCAPE:
                 pygame.quit()
 
-            # TEMPORARY SKIP BUTTON
-            if event.key == pygame.K_6:
-                line_number += 10
-                print("hey")
-
         # Updates
             if event.key == pygame.K_SPACE:
                 # Start Game if haven't already
