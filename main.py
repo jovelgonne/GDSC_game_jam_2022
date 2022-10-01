@@ -108,7 +108,7 @@ while True:
                         mixer.music.load('audio/Astral_Wind.mp3')
                         mixer.music.play(loops=-1)
 
-
+                    # INSERT MUSIC HERE MIGGY (Just copy above 4 lines of code, change line_number and audio loaded in)
 
                     else:
                         # Update next line of text if all previous text already displayed 
