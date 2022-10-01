@@ -1,6 +1,5 @@
 def update_bar(love_hate_meter, option_number, option_selected):
     exceptions = [0,2]
-    print(option_number)
     if option_number in exceptions:
         pass
     elif option_selected == False: 

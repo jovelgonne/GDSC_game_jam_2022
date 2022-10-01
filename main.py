@@ -7,6 +7,7 @@ from pygame.locals import *
 import give_text
 import love_hate
 import utility_functions
+import pandoras_box
 
 pygame.init()
 
@@ -39,6 +40,14 @@ is_option = False
 option_selected = False             # False if option 1, true if option 2
 display_option_response = False 
 option_number = 0                  # Keeps track of which option we're on
+
+# Constants
+# ----------------------------------------------------------
+CAFETERIA = 11
+CAFE = CAFETERIA + 19
+RAIN = CAFE + 35
+CLIFF = RAIN + 16
+
 
 # Colors
 # ----------------------------------------------------------
@@ -88,6 +97,12 @@ tony_jojo = pygame.image.load("images/Opening pose.png").convert_alpha()
 tony_jojo = pygame.transform.rotozoom(tony_jojo,0,0.55)
 tony_cafe = pygame.image.load("images/cafe.png").convert_alpha()
 tony_cafe = pygame.transform.rotozoom(tony_cafe,0,0.48)
+sonia_neutral = pygame.image.load("images/sonia neutral.png").convert_alpha()
+sonia_neutral = pygame.transform.rotozoom(sonia_neutral,0,0.55)
+sonia_smirk = pygame.image.load("images/sonia smirk.png").convert_alpha()
+sonia_smirk = pygame.transform.rotozoom(sonia_smirk,0,0.55)
+sonia_weak = pygame.image.load("images/sonia weak.png").convert_alpha()
+sonia_weak = pygame.transform.rotozoom(sonia_weak,0,0.5)
 
 # Backgrounds
 office = pygame.image.load("images/backgrounds/office.png").convert()
@@ -144,12 +159,14 @@ while True:
                             # Counter
                             option_number += 1 
 
-                            # Add Choice Stuff here (will move to separate function later)
+                            # ADD CHOICE STUFF HERE (will move to separate function later)
                             if line_number == 9:
                                 if option_selected == False:
                                     current_character = tony_happy
                                 if option_selected == True:
                                     current_character = tony_neutral
+                            elif line_number == (CAFETERIA+3):
+                                current_character = sonia_smirk
                         
                         display_option_response = not display_option_response
 
@@ -158,24 +175,43 @@ while True:
                         # Update next line of text if all previous text already displayed 
                         line_number += 1
 
-                        # CHANGE ANY IMAGES/AUDIO HERE
+                    # CHANGE ANY IMAGES/AUDIO HERE
 
-                            # INSERT MUSIC HERE MIGGY (Just copy below 4 lines of code, change line_number and audio loaded in)
-                            # mixer.music.stop()
-                            # mixer.music.load('audio/Astral_Wind.mp3')
-                            # mixer.Channel(0).play(pygame.mixer.Sound('audio/Astral_Wind.mp3'), loops=-1)
-                            #    
-                        if line_number == 1:
-                            current_character = tony_happy
-                        if line_number == 2:
-                            current_character = tony_neutral
-                        if line_number == 5:
-                            current_character = player
-                        if line_number == 6:
-                            current_character = tony_happy
-                        if line_number == 11:
-                            current_background += 1
-        
+                        # INSERT MUSIC HERE MIGGY (Just copy below 4 lines of code, change line_number and audio loaded in)
+                        # mixer.music.stop()
+                        # mixer.music.load('audio/Astral_Wind.mp3')
+                        # mixer.Channel(0).play(pygame.mixer.Sound('audio/Astral_Wind.mp3'), loops=-1)
+
+                    # pandoras_box.open()    
+                    if line_number == 1:
+                        current_character = tony_happy
+                    if line_number == 2:
+                        current_character = tony_neutral
+                    if line_number == 5:
+                        current_character = player
+                    if line_number == 6:
+                        current_character = tony_happy
+                    if line_number == CAFETERIA:
+                        current_character = player
+                        current_background += 1
+                    if line_number == (CAFETERIA+1):
+                        current_character = sonia_smirk
+                    if line_number == (CAFETERIA+2):
+                        current_character = player
+                    if line_number == (CAFETERIA+3):
+                        current_character = sonia_neutral
+
+                    if line_number == CAFE:
+                        current_background += 1
+
+                    if line_number == RAIN:
+                        current_background += 1
+
+                    if line_number == CLIFF:
+                        current_background += 1
+
+
+                    print(line_number)
             if event.key == pygame.K_UP or event.key == pygame.K_DOWN:
                 option_selected = not option_selected
 
