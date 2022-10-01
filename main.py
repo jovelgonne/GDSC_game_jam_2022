@@ -184,6 +184,7 @@ while True:
                         # Update next line of text if all previous text already displayed 
                         line_number += 1
 
+                    # Dealing with the ending
                     if (line_number == CLIFF):
                         if ending_scene == False:
                             if love_hate_meter <= 5:
@@ -192,6 +193,9 @@ while True:
                                 line_number = CLIFF2
                                 ending_scene = True
                         else:
+                            line_number = CREDIT
+                    if (line_number == CLIFF2):
+                        if ending_scene == True:
                             line_number = CREDIT
                     
                     
