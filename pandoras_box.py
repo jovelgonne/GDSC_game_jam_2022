@@ -2,7 +2,7 @@
 # ----------------------------------------------------------
 CAFETERIA = 12
 CAFE = CAFETERIA + 19
-RAIN = CAFE + 36
+RAIN = CAFE + 35
 CLIFF = RAIN + 17
 CLIFF2 = CLIFF + 0
 CREDIT = CLIFF2 + 0
