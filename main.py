@@ -72,7 +72,7 @@ mixer.music.load('audio/Oh_Tony.mp3')
 mixer.music.set_volume(0.1)
 
 #Play the music
-# mixer.Channel(0).play(pygame.mixer.Sound('audio/Oh_Tony.mp3'), loops=-1)
+mixer.Channel(0).play(pygame.mixer.Sound('audio/Oh_Tony.mp3'), loops=-1)
 
 
 # Graphics
@@ -103,7 +103,15 @@ sonia_smirk = pygame.image.load("images/sonia smirk.png").convert_alpha()
 sonia_smirk = pygame.transform.rotozoom(sonia_smirk,0,0.55)
 sonia_weak = pygame.image.load("images/sonia weak.png").convert_alpha()
 sonia_weak = pygame.transform.rotozoom(sonia_weak,0,0.5)
-characters = [tony_happy,tony_neutral,tony_angry,tony_blush,tony_jojo,tony_cafe,sonia_smirk,sonia_neutral,player]
+tony_wet = pygame.image.load("images/drenched.png").convert_alpha()
+tony_wet = pygame.transform.rotozoom(tony_wet,0,0.5)
+tony_dead = pygame.image.load("images/bad ending.png").convert_alpha()
+tony_dead = pygame.transform.rotozoom(tony_dead,0,0.5)
+tony_good = pygame.image.load("images/happy ending.png").convert_alpha()
+tony_good = pygame.transform.rotozoom(tony_good,0,0.5)
+pooh = pygame.image.load("images/Poohwee.png").convert_alpha()
+pooh = pygame.transform.rotozoom(pooh,0,0.7)
+characters = [tony_happy,tony_neutral,tony_angry,tony_blush,tony_jojo,tony_cafe,sonia_smirk,sonia_neutral,player,sonia_weak,tony_wet,tony_dead,tony_good,pooh]
 
 # Backgrounds
 office = pygame.image.load("images/backgrounds/office.png").convert()
@@ -171,11 +179,11 @@ while True:
                         line_number += 1
 
                     
-                    # CHANGE MUSIC HERE
-                        # INSERT MUSIC HERE MIGGY (Just copy below 4 lines of code, change line_number and audio loaded in)
-                        # mixer.music.stop()
-                        # mixer.music.load('audio/Astral_Wind.mp3')
-                        # mixer.Channel(0).play(pygame.mixer.Sound('audio/Astral_Wind.mp3'), loops=-1)
+                    # CHANGE MUSIC HERE MIGGY
+                    # if line_number == CAFETERIA:
+                    #     mixer.music.stop()
+                    #     mixer.music.load('audio/Astral_Wind.mp3')
+                    #     mixer.Channel(0).play(pygame.mixer.Sound('audio/Astral_Wind.mp3'), loops=-1)
 
                     # CHANGE ANY IMAGES HERE
                     [current_character,current_background] = pandoras_box.open(line_number, current_background, characters, current_character)  

@@ -14,7 +14,11 @@ tony_cafe = 5
 sonia_smirk = 6
 sonia_neutral = 7 
 player = 8
-
+sonia_weak = 9
+tony_wet = 10
+tony_dead = 11
+tony_good = 12
+pooh = 13
 
 def open(line_number, current_background, characters, old_character):
     current_character = -1
