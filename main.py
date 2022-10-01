@@ -56,14 +56,15 @@ mixer.Channel(0).play(pygame.mixer.Sound('audio/Oh_Tony.mp3'), loops=-1)
 
 # Graphics
 # ---------------------------------------------------------
+current_character = 0
+current_background = 0
+
 # Characters
 tony_jojo = pygame.image.load("images/Opening pose.png").convert_alpha()
 tony_jojo = pygame.transform.rotozoom(tony_jojo,0,0.48)
-
 tony_cafe = pygame.image.load("images/cafe.png").convert_alpha()
 tony_cafe = pygame.transform.rotozoom(tony_cafe,0,0.48)
-
-current_background = 0
+characters = [tony_jojo,tony_cafe]
 
 # Backgrounds
 office = pygame.image.load("images/backgrounds/office.png").convert()
@@ -126,6 +127,7 @@ while True:
                             mixer.Channel(0).play(pygame.mixer.Sound('audio/Astral_Wind.mp3'), loops=-1)
 
                             current_background += 1
+                            current_character = 1
         
             if event.key == pygame.K_UP or event.key == pygame.K_DOWN:
                 option_selected = not option_selected
@@ -139,7 +141,7 @@ while True:
     screen.blit(backgrounds[current_background], (0, 0))
 
     # Character
-    screen.blit(tony_jojo, (320, -140))
+    screen.blit(characters[current_character], (320, -140))
 
     # Pause/Unpause Button
     button_padding = 50
