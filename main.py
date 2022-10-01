@@ -51,7 +51,7 @@ mixer.music.load('audio/Oh_Tony.mp3')
 mixer.music.set_volume(0.1)
 
 #Play the music
-mixer.music.play(loops=-1)
+mixer.Channel(0).play(pygame.mixer.Sound('audio/Oh_Tony.mp3'), loops=-1)
 
 
 # Graphics
@@ -63,10 +63,20 @@ tony_jojo = pygame.transform.rotozoom(tony_jojo,0,0.48)
 tony_cafe = pygame.image.load("images/cafe.png").convert_alpha()
 tony_cafe = pygame.transform.rotozoom(tony_cafe,0,0.48)
 
+current_background = 0
+
 # Backgrounds
 office = pygame.image.load("images/backgrounds/office.png").convert()
-office = pygame.transform.rotozoom(office,0,0.7)
-
+office = pygame.transform.rotozoom(office,0,0.8)
+cafeteria = pygame.image.load("images/backgrounds/cafeteria.png").convert()
+cafeteria = pygame.transform.rotozoom(cafeteria,0,0.8)
+cafe = pygame.image.load("images/backgrounds/cafe.png").convert()
+cafe = pygame.transform.rotozoom(cafe,0,0.8)
+rain = pygame.image.load("images/backgrounds/rain.png").convert()
+rain = pygame.transform.rotozoom(rain,0,0.8)
+cliff = pygame.image.load("images/backgrounds/cliff.png").convert()
+cliff = pygame.transform.rotozoom(cliff,0,0.8)
+backgrounds = [office, cafeteria, cafe, rain, cliff]
 
 # Main Game loop
 # ---------------------------------------------------------
@@ -102,17 +112,20 @@ while True:
                         
                         display_option_response = not display_option_response
 
-                    # CHANGING MUSIC
-                    if line_number == 4:
-                        mixer.music.stop()
-                        mixer.music.load('audio/Astral_Wind.mp3')
-                        mixer.music.play(loops=-1)
-
-                    # INSERT MUSIC HERE MIGGY (Just copy above 4 lines of code, change line_number and audio loaded in)
+                    
 
                     else:
                         # Update next line of text if all previous text already displayed 
                         line_number += 1
+
+                            # CHANGING MUSIC
+                            # INSERT MUSIC HERE MIGGY (Just copy below 4 lines of code, change line_number and audio loaded in)
+                        if line_number == 3:
+                            mixer.music.stop()
+                            mixer.music.load('audio/Astral_Wind.mp3')
+                            mixer.Channel(0).play(pygame.mixer.Sound('audio/Astral_Wind.mp3'), loops=-1)
+
+                            current_background += 1
         
             if event.key == pygame.K_UP or event.key == pygame.K_DOWN:
                 option_selected = not option_selected
@@ -122,10 +135,8 @@ while True:
         frames_since_space+= 1
     
 
-    # Drawing Shit
-
     # Background
-    screen.blit(office, (0, 0))
+    screen.blit(backgrounds[current_background], (0, 0))
 
     # Character
     screen.blit(tony_jojo, (320, -140))
