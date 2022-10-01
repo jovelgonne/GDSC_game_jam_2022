@@ -1,9 +1,11 @@
 # Constants
 # ----------------------------------------------------------
 CAFETERIA = 12
-CAFE = CAFETERIA + 20
+CAFE = CAFETERIA + 19
 RAIN = CAFE + 36
 CLIFF = RAIN + 17
+CLIFF2 = CLIFF + 0
+CREDIT = CLIFF2 + 0
 
 tony_happy = 0
 tony_neutral = 1
@@ -67,8 +69,56 @@ def open(line_number, current_background, characters, old_character):
     if line_number == CAFE:
         current_character = player
         current_background += 1
-    if line_number == (CAFE+1):
+    if line_number == (CAFE+1): # For line 2
         current_character = tony_happy
+    if line_number == (CAFE+3):
+        current_character = tony_neutral
+    if line_number == (CAFE+5):
+        current_character = tony_happy
+    if line_number == (CAFE+6):
+        current_character = player
+    if line_number == (CAFE+7):
+        current_character = tony_happy
+    if line_number == (CAFE+10):
+        current_character = player
+    if line_number == (CAFE+11):
+        current_character = pooh
+    if line_number == (CAFE+12):
+        current_character = tony_happy
+    if line_number == (CAFE+13):
+        current_character = tony_blush
+    if line_number == (CAFE+14):
+        current_character = player
+    if line_number == (CAFE+15):
+        current_character = pooh
+    if line_number == (CAFE+16):
+        current_character = player
+    if line_number == (CAFE+17):
+        current_character = pooh
+    if line_number == (CAFE+18):
+        current_character = player
+    if line_number == (CAFE+19):
+        current_character = pooh
+    if line_number == (CAFE+23):
+        current_character = tony_angry
+    if line_number == (CAFE+24):
+        current_character = pooh
+    if line_number == (CAFE+25):
+        current_character = tony_angry
+    if line_number == (CAFE+26):
+        current_character = pooh
+    if line_number == (CAFE+27):
+        current_character = tony_angry
+    if line_number == (CAFE+28):
+        current_character = pooh
+    if line_number == (CAFE+29):
+        current_character = player
+    if line_number == (CAFE+30):
+        current_character = pooh
+    if line_number == (CAFE+32):
+        current_character = tony_angry
+    if line_number == (CAFE+34):
+        current_character = player
     
     if current_character == -1:
         return[old_character,current_background]
@@ -84,6 +134,7 @@ def options(line_number, characters, old_character, option_selected):
             current_character = tony_happy
         if option_selected == True:
             current_character = tony_neutral
+
     if line_number == (CAFETERIA+2):
         current_character = sonia_smirk
     if line_number == (CAFETERIA+13):
@@ -96,7 +147,18 @@ def options(line_number, characters, old_character, option_selected):
             current_character = sonia_neutral
         if option_selected == True:
             current_character = sonia_smirk
-    
+
+    if line_number == (CAFE+2):
+        if option_selected == False:
+            current_character = tony_blush
+        if option_selected == True:
+            current_character = tony_neutral
+    if line_number == (CAFE+9):
+        if option_selected == False:
+            current_character = tony_blush
+        if option_selected == True:
+            current_character = tony_angry
+
     if current_character == -1:
         return old_character
     else:

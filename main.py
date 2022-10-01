@@ -24,6 +24,7 @@ width, height = screen.get_size()
 
 # Main Menu
 game_started = 0
+ending_scene = False
 
 # Love/Hate Meters
 love_hate_meter = 5
@@ -44,10 +45,11 @@ option_number = 0                  # Keeps track of which option we're on
 # Constants
 # ----------------------------------------------------------
 CAFETERIA = 12
-CAFE = CAFETERIA + 20
+CAFE = CAFETERIA + 19
 RAIN = CAFE + 36
 CLIFF = RAIN + 17
-
+CLIFF2 = CLIFF + 0
+CREDIT = CLIFF2 + 0
 
 # Colors
 # ----------------------------------------------------------
@@ -72,7 +74,7 @@ mixer.music.load('audio/Oh_Tony.mp3')
 mixer.music.set_volume(0.1)
 
 #Play the music
-mixer.Channel(0).play(pygame.mixer.Sound('audio/Oh_Tony.mp3'), loops=-1)
+# mixer.Channel(0).play(pygame.mixer.Sound('audio/Oh_Tony.mp3'), loops=-1)
 
 
 # Graphics
@@ -128,6 +130,10 @@ cliff_bad = pygame.image.load("images/backgrounds/cliff_bad.png").convert()
 cliff_bad = pygame.transform.scale(cliff_bad, (width, height))
 backgrounds = [office, cafeteria, cafe, rain, cliff, cliff_bad]
 
+# Dialogue Box
+dialog_box = pygame.image.load("images/textbox.png").convert()
+dialog_box = pygame.transform.scale(office, (width, height))
+
 current_character = tony_jojo
 current_background = 0
 
@@ -148,6 +154,11 @@ while True:
         if event.type == pygame.KEYDOWN:
             if event.key == pygame.K_ESCAPE:
                 pygame.quit()
+
+            # TEMPORARY SKIP BUTTON
+            if event.key == pygame.K_6:
+                line_number += 10
+                print("hey")
 
         # Updates
             if event.key == pygame.K_SPACE:
@@ -178,6 +189,16 @@ while True:
                         # Update next line of text if all previous text already displayed 
                         line_number += 1
 
+                    if (line_number == CLIFF):
+                        if ending_scene == False:
+                            if love_hate_meter <= 5:
+                                ending_scene = True
+                            else:
+                                line_number = CLIFF2
+                                ending_scene = True
+                        else:
+                            line_number = CREDIT
+                    
                     
                     # CHANGE MUSIC HERE MIGGY
                     # if line_number == CAFETERIA:
@@ -232,6 +253,7 @@ while True:
         text_offset = 20
         row_offset = 40
         pygame.draw.rect(screen, color=PINK, rect=pygame.Rect(dialog_box_padding, 0.75*height, width-2*dialog_box_padding, 0.25*height-dialog_box_padding))
+        # screen.blit(dialog_box, (0, 0))
 
         # Retrieve Text
         text = give_text.current_text(line_number)
