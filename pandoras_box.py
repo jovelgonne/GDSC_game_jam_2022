@@ -31,6 +31,7 @@ def open(line_number, current_background, characters, old_character):
         current_character = player
     if line_number == 7:
         current_character = tony_happy
+    
     if line_number == (CAFETERIA):
         current_character = player
         current_background += 1
@@ -54,15 +55,25 @@ def open(line_number, current_background, characters, old_character):
         current_character = sonia_neutral
     if line_number == (CAFETERIA+12):
         current_character = tony_neutral
-    if line_number == (CAFETERIA+13):
+    if line_number == (CAFETERIA+14):
+        current_character = player
+    if line_number == (CAFETERIA+15):
+        current_character = sonia_neutral
+    if line_number == (CAFETERIA+16):
+        current_character = sonia_smirk
+    if line_number == (CAFETERIA+18):
         current_character = player
 
+    if line_number == CAFE:
+        current_character = player
+        current_background += 1
+    if line_number == (CAFE+1):
+        current_character = tony_happy
     
     if current_character == -1:
         return[old_character,current_background]
     else:
         return[characters[current_character],current_background]
-
 
 
 def options(line_number, characters, old_character, option_selected):
@@ -73,7 +84,18 @@ def options(line_number, characters, old_character, option_selected):
             current_character = tony_happy
         if option_selected == True:
             current_character = tony_neutral
-
+    if line_number == (CAFETERIA+2):
+        current_character = sonia_smirk
+    if line_number == (CAFETERIA+13):
+        if option_selected == False:
+            current_character = tony_happy
+        if option_selected == True:
+            current_character = tony_neutral
+    if line_number == (CAFETERIA+17):
+        if option_selected == False:
+            current_character = sonia_neutral
+        if option_selected == True:
+            current_character = sonia_smirk
     
     if current_character == -1:
         return old_character
