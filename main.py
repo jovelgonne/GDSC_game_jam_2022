@@ -5,6 +5,7 @@ from pygame import mixer
 from pygame.locals import *
 
 import give_text
+import love_hate
 import utility_functions
 
 pygame.init()
@@ -23,6 +24,10 @@ width, height = screen.get_size()
 # Main Menu
 game_started = 0
 
+# Love/Hate Meters
+love_hate_meter = 5
+meter_max = 10
+
 # Text
 dialogue_font = pygame.font.Font('font/game_over.ttf', 64)
 line_number = -1
@@ -30,8 +35,9 @@ space_pressed = 0
 frames_since_space = 0
 
 is_option = False
-option_selected = False         # False if option 1, true if option 2
-display_option_response = False
+option_selected = False             # False if option 1, true if option 2
+display_option_response = False 
+option_number = 0                  # Keeps track of which option we're on
  
 # Colors
 PINK = (255,182,193)
@@ -39,6 +45,9 @@ WHITE = (255,255,255)
 BRONZE = (205,127,50)
 BLACK = (0,0,0)
 GREY = (47,79,79)
+BLUE = (197,207,252)
+MUTED_PINK = (229,180,193)
+MAGENTA = (255,0,255)
 
 # Music and Audio
 # ---------------------------------------------------------
@@ -61,8 +70,8 @@ current_character = 0
 current_background = 0
 
 # Title card
-title_card = pygame.image.load("images/title_card.png").convert_alpha()
-title_card = pygame.transform.rotozoom(title_card,0,0.48)
+title = pygame.image.load("images/title.png").convert_alpha()
+title = pygame.transform.rotozoom(title,0,1)
 
 # Characters
 tony_jojo = pygame.image.load("images/Opening pose.png").convert_alpha()
@@ -110,15 +119,17 @@ while True:
                 else:
                     space_pressed = 1
                     frames_since_space = 0
-                    if is_option == True:
-                        # ADD TO LOVE/HATE METER                     
+                    if is_option == True:                  
                         if display_option_response == True:
                             is_option = False
                             line_number += 1
+                        else:
+                            love_hate_meter = love_hate.update_bar(love_hate_meter, option_number, option_selected)  
+                            # Counter
+                            option_number += 1 
                         
                         display_option_response = not display_option_response
 
-                    
 
                     else:
                         # Update next line of text if all previous text already displayed 
@@ -126,10 +137,10 @@ while True:
 
                             # CHANGING MUSIC
                             # INSERT MUSIC HERE MIGGY (Just copy below 4 lines of code, change line_number and audio loaded in)
-                        if line_number == 3:
-                            mixer.music.stop()
-                            mixer.music.load('audio/Astral_Wind.mp3')
-                            mixer.Channel(0).play(pygame.mixer.Sound('audio/Astral_Wind.mp3'), loops=-1)
+                        if line_number == 8:
+                            # mixer.music.stop()
+                            # mixer.music.load('audio/Astral_Wind.mp3')
+                            # mixer.Channel(0).play(pygame.mixer.Sound('audio/Astral_Wind.mp3'), loops=-1)
 
                             current_background += 1
                             current_character = 1
@@ -140,20 +151,24 @@ while True:
     # Update frame count if adding text to screen
     if space_pressed == 1:
         frames_since_space+= 1
-    
-    if game_started == 0:
-        screen.blit(title_card, (0, 0))
 
-    # Background
+    # Draw Background
     screen.blit(backgrounds[current_background], (0, 0))
 
-    # Character
-    screen.blit(characters[current_character], (320, -140))
+    # Draw Title/Character
+    if game_started == 0:
+        screen.blit(title, (600, 0))
+    else:
+        screen.blit(characters[current_character], (320, -140))
 
-    # Pause/Unpause Button
-    button_padding = 50
-    button_width = 50
-    pygame.draw.rect(screen, PINK, pygame.Rect(screen.get_width()-button_padding-button_width, button_padding, button_width, button_width),5,5,5,5)
+    # Might work on this later
+    # # Pause/Unpause Button 
+    # button_padding = 50
+    # button_width = 50
+    # pygame.draw.rect(screen, PINK, pygame.Rect(screen.get_width()-button_padding-button_width, button_padding, button_width, button_width),5,5,5,5)
+
+
+
 
 
     if game_started == 1:
@@ -185,7 +200,7 @@ while True:
         # If is a choice line, render with choice boxes
         elif is_option == True:                        # CHANGE THIS LATER SO THAT IT CAN BE MORE THAN ONE LINE
             text = text.split("\n")
-            if display_option_response == False:    
+            if display_option_response == False:  
                 # Text Scrolling In
                 [text[0], space_pressed] = utility_functions.shorten_string(text[0], frames_since_space)
 
@@ -229,8 +244,20 @@ while True:
             print("Error in is_option variable")
 
 
+        # Draw Love and Hate Meters
+        meter_width = 150
+        meter_height = 40
+        pygame.draw.rect(screen, color=MUTED_PINK, rect=pygame.Rect(text_padding, text_padding, ((10-love_hate_meter)/meter_max)*meter_width, meter_height))
+        pygame.draw.rect(screen, color=BLUE, rect=pygame.Rect(width-text_padding-meter_width, text_padding, (love_hate_meter/meter_max)*meter_width, meter_height))
 
+        pygame.draw.rect(screen, color=BLACK, rect=pygame.Rect(text_padding, text_padding, meter_width, meter_height), width=3)
+        pygame.draw.rect(screen, color=BLACK, rect=pygame.Rect(width-text_padding-meter_width, text_padding, meter_width, meter_height), width=3)
 
+        # Temporary Labels
+        text_render = dialogue_font.render("Love", True, BLACK)                # Make text scroll in
+        screen.blit(text_render, (text_padding+10, text_padding))
+        text_render = dialogue_font.render("Spite", True, BLACK)                # Make text scroll in
+        screen.blit(text_render, (width-text_padding-meter_width+10, text_padding))
     
     
 
