@@ -217,6 +217,14 @@ while True:
                         mixer.music.stop()
                         mixer.music.load('audio/Tonysnottheonlywetone.mp3')
                         mixer.Channel(0).play(pygame.mixer.Sound('audio/Tonysnottheonlywetone.mp3'), loops=-1)
+                    if line_number == CLIFF+1:
+                        mixer.music.stop()
+                        mixer.music.load('audio/Ah_tonyy.mp3')
+                        mixer.Channel(0).play(pygame.mixer.Sound('audio/Ah_tonyy.mp3'), loops=-1)
+                    if line_number == CLIFF2+1:
+                        mixer.music.stop()
+                        mixer.music.load('audio/youredeadtoni.mp3')
+                        mixer.Channel(0).play(pygame.mixer.Sound('audio/youredeadtoni.mp3'))
 
                     # CHANGE ANY IMAGES HERE
                     [current_character,current_background] = pandoras_box.open(line_number, current_background, characters, current_character)  
@@ -295,7 +303,7 @@ while True:
                 screen.blit(text_render, (text_padding,0.75*height+text_offset+row_offset))
 
                 # Draw Option Boxes
-                option_box_padding = 400
+                option_box_padding = 290
                 selected_padding = 5
 
                 # Highlight Selected Box
@@ -311,7 +319,7 @@ while True:
                 # Add options text
                 option1 = text[1]              
                 option2 = text[2]
-                option_text_offset = 400
+                option_text_offset = 300
 
                 text_render = dialogue_font.render(option1, True, BLACK)
                 screen.blit(text_render, (option_text_offset,0.53*height+text_offset))
