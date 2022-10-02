@@ -71,7 +71,9 @@ mixer.init()
 mixer.music.load('audio/Oh_Tony.mp3')
 
 #Set preferred volume
-mixer.music.set_volume(0.1)
+mixer.Channel(0).set_volume(0.8)
+mixer.Channel(1).set_volume(0.5)
+mixer.Channel(2).set_volume(0.3)
 
 #Play the music
 mixer.Channel(0).play(pygame.mixer.Sound('audio/Oh_Tony.mp3'), loops=-1)
@@ -169,6 +171,7 @@ while True:
                         if display_option_response == True:
                             is_option = False
                             line_number += 1
+                            mixer.Channel(1).play(pygame.mixer.Sound('audio/blip1.wav'))
                         else:
                             love_hate_meter = love_hate.update_bar(love_hate_meter, option_number, option_selected)  
                             # Counter
@@ -183,6 +186,7 @@ while True:
                     else:
                         # Update next line of text if all previous text already displayed 
                         line_number += 1
+                        mixer.Channel(1).play(pygame.mixer.Sound('audio/blip1.wav'))
 
                     # Dealing with the ending
                     if (line_number == CLIFF2):
@@ -201,16 +205,21 @@ while True:
                     
                     
                     # CHANGE MUSIC HERE MIGGY
-                    # if line_number == CAFETERIA:
-                    #     mixer.music.stop()
-                    #     mixer.music.load('audio/Astral_Wind.mp3')
-                    #     mixer.Channel(0).play(pygame.mixer.Sound('audio/Astral_Wind.mp3'), loops=-1)
+                    if line_number == CAFE:
+                        mixer.music.stop()
+                        mixer.music.load('audio/Astral_Wind.mp3')
+                        mixer.Channel(0).play(pygame.mixer.Sound('audio/Astral_Wind.mp3'), loops=-1)
+                    if line_number == RAIN:
+                        mixer.music.stop()
+                        mixer.music.load('audio/Tonysnottheonlywetone.mp3')
+                        mixer.Channel(0).play(pygame.mixer.Sound('audio/Tonysnottheonlywetone.mp3'), loops=-1)
 
                     # CHANGE ANY IMAGES HERE
                     [current_character,current_background] = pandoras_box.open(line_number, current_background, characters, current_character)  
 
             if event.key == pygame.K_UP or event.key == pygame.K_DOWN:
                 option_selected = not option_selected
+                mixer.Channel(2).play(pygame.mixer.Sound('audio/blip2.wav'))
 
     # Update frame count if adding text to screen
     if space_pressed == 1:
