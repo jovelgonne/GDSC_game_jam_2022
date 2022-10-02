@@ -119,7 +119,79 @@ def open(line_number, current_background, characters, old_character):
         current_character = tony_angry
     if line_number == (CAFE+34):
         current_character = player
-    
+
+    if line_number == RAIN:
+        current_character = player
+        current_background += 1
+    if line_number == (RAIN+1):
+        current_character = tony_wet
+    if line_number == (RAIN+3):
+        current_character = tony_wet
+    if line_number == (RAIN+8):
+        current_character = player
+    if line_number == (RAIN+9):
+        current_character = sonia_neutral
+    if line_number == (RAIN+10):
+        current_character = player
+    if line_number == (RAIN+11):
+        current_character = tony_wet
+    if line_number == (RAIN+12):
+        current_character = player
+    if line_number == (RAIN+13):
+        current_character = sonia_weak
+
+    if line_number == CLIFF:
+        current_character = player
+        current_background += 1
+    if line_number == (CLIFF+5):
+        current_character = tony_neutral
+    if line_number == (CLIFF+6):
+        current_character = player
+    if line_number == (CLIFF+7):
+        current_character = tony_neutral
+    if line_number == (CLIFF+8):
+        current_character = player
+    if line_number == (CLIFF+9):
+        current_character = tony_blush
+    if line_number == (CLIFF+10):
+        current_character = player
+    if line_number == (CLIFF+11):
+        current_character = tony_neutral
+    if line_number == (CLIFF+12):
+        current_character = player
+    if line_number == (CLIFF+13):
+        current_character = tony_blush
+    if line_number == (CLIFF+14):
+        current_character = player
+    if line_number == (CLIFF+15):
+        current_character = tony_blush
+    if line_number == (CLIFF+16):
+        current_character = player
+    if line_number == (CLIFF+17):
+        current_character = tony_happy
+    if line_number == (CLIFF+18):
+        current_character = tony_good
+    if line_number == (CLIFF+19):
+        current_character = tony_good
+
+    if line_number == CLIFF2:
+        current_character = player
+        current_background += 2
+    if line_number == (CLIFF2+5):
+        current_character = tony_neutral
+    if line_number == (CLIFF2+6):
+        current_character = player
+    if line_number == (CLIFF2+7):
+        current_character = tony_angry
+    if line_number == (CLIFF2+8):
+        current_character = player
+    if line_number == (CLIFF2+9):
+        current_character = tony_angry
+    if line_number == (CLIFF2+10):
+        current_character = player
+    if line_number == (CLIFF2+13):
+        current_character = tony_dead
+
     if current_character == -1:
         return[old_character,current_background]
     else:
@@ -158,6 +230,15 @@ def options(line_number, characters, old_character, option_selected):
             current_character = tony_blush
         if option_selected == True:
             current_character = tony_angry
+
+    if line_number == (RAIN+2):
+        current_character = tony_wet
+    if line_number == (RAIN+4):
+        current_character = tony_wet
+    if line_number == (RAIN+6):
+        current_character = tony_wet
+    if line_number == (RAIN+15):
+        current_character = sonia_weak
 
     if current_character == -1:
         return old_character

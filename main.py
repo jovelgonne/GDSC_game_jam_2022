@@ -74,7 +74,7 @@ mixer.music.load('audio/Oh_Tony.mp3')
 mixer.music.set_volume(0.1)
 
 #Play the music
-# mixer.Channel(0).play(pygame.mixer.Sound('audio/Oh_Tony.mp3'), loops=-1)
+mixer.Channel(0).play(pygame.mixer.Sound('audio/Oh_Tony.mp3'), loops=-1)
 
 
 # Graphics
@@ -185,6 +185,10 @@ while True:
                         line_number += 1
 
                     # Dealing with the ending
+                    if (line_number == CLIFF2):
+                        if ending_scene == True:
+                            line_number = CREDIT
+
                     if (line_number == CLIFF):
                         if ending_scene == False:
                             if love_hate_meter <= 5:
@@ -193,9 +197,6 @@ while True:
                                 line_number = CLIFF2
                                 ending_scene = True
                         else:
-                            line_number = CREDIT
-                    if (line_number == CLIFF2):
-                        if ending_scene == True:
                             line_number = CREDIT
                     
                     

@@ -331,7 +331,7 @@ You're an amazing person, and I won't stand here and let the person I love make 
 ..
 
 Let's stop this meaningless bickering.
- 
+
 But I can't.. I can't let myself remain a slave to the injustice of this world.
 
 
@@ -370,7 +370,7 @@ And this time my spite may have gone too unreasonably far.
 It seems soon my actions may be pushed to the edge of rationality.
 
 I call out to Tony who I've finally caught up to. It seems he's finally dried up.
- 
+
 Why are you still following me? I already told you to let me go.
 
 I'm stopping you right here and now. No matter what it takes. 
@@ -378,7 +378,7 @@ I'm stopping you right here and now. No matter what it takes.
 I beg your pardon?
 
 Then beg.
- 
+
 How could you say that? I did my best to treat you courteously, and I'm trying to do the right thing here!
 
 Simple, you scratch my back, I stab yours.
@@ -406,4 +406,10 @@ What will happen to me now?
 What am I even doing?
 What am I?
 
-I guess this is where our story ends.
+I guess this is where our story ends. 
+On the edge of the cliff, my sanity and a corpse.
+The edge of what could've been something more.
+
+Joseph Ovelgonne - Main Developer
+Miguel Benatiro - Script Writer, Sound Design, Developer
+Kaitlyn Truong - Graphics, Developer
