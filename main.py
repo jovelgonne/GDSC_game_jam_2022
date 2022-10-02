@@ -133,8 +133,8 @@ cliff_bad = pygame.transform.scale(cliff_bad, (width, height))
 backgrounds = [office, cafeteria, cafe, rain, cliff, cliff_bad]
 
 # Dialogue Box
-dialog_box = pygame.image.load("images/textbox.png").convert()
-dialog_box = pygame.transform.scale(office, (width, height))
+dialog_box = pygame.image.load("images/textbox.png").convert_alpha()
+dialog_box = pygame.transform.scale(dialog_box, (width, height))
 
 current_character = tony_jojo
 current_background = 0
@@ -207,8 +207,12 @@ while True:
                     # CHANGE MUSIC HERE MIGGY
                     if line_number == CAFE:
                         mixer.music.stop()
-                        mixer.music.load('audio/Astral_Wind.mp3')
-                        mixer.Channel(0).play(pygame.mixer.Sound('audio/Astral_Wind.mp3'), loops=-1)
+                        mixer.music.load('audio/is_this_a_date.mp3')
+                        mixer.Channel(0).play(pygame.mixer.Sound('audio/is_this_a_date.mp3'), loops=-1)
+                    if line_number == CAFE+18:
+                        mixer.music.stop()
+                        mixer.music.load('audio/is_this_a_trainwreck.mp3')
+                        mixer.Channel(0).play(pygame.mixer.Sound('audio/is_this_a_trainwreck.mp3'), loops=-1)
                     if line_number == RAIN:
                         mixer.music.stop()
                         mixer.music.load('audio/Tonysnottheonlywetone.mp3')
@@ -230,8 +234,7 @@ while True:
 
     # Draw Title/Character
     if game_started == 0:
-        # Setup and Draw Dialog Box
-        text_padding = 60
+        text_padding = 60   # i dont think i need this but no time to check
         instructions_width_pad = 300
         instructions_height_pad = 500
         row_offset = 40
@@ -261,8 +264,8 @@ while True:
         text_padding = 60
         text_offset = 20
         row_offset = 40
-        pygame.draw.rect(screen, color=PINK, rect=pygame.Rect(dialog_box_padding, 0.75*height, width-2*dialog_box_padding, 0.25*height-dialog_box_padding))
-        # screen.blit(dialog_box, (0, 0))
+        # pygame.draw.rect(screen, color=PINK, rect=pygame.Rect(dialog_box_padding, 0.75*height, width-2*dialog_box_padding, 0.25*height-dialog_box_padding))
+        screen.blit(dialog_box, (0, 0))
 
         # Retrieve Text
         text = give_text.current_text(line_number)
